@@ -18,3 +18,5 @@ jobs:
           playbook: ansible-playbook/deploy.yml
           inventory: ansible-playbook/inventory.ini
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          options: |
+            --user azureuser
