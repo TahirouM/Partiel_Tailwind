@@ -16,7 +16,9 @@ jobs:
         uses: dawidd6/action-ansible-playbook@v2
         with:
           playbook: ansible-playbook/deploy.yml
-          inventory: ansible-playbook/inventory.ini
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          inventory: |
+            [webserver]
+            20.199.47.109 ansible_python_interpreter=/usr/bin/python3
           options: |
             --user azureuser
