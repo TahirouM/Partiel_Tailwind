@@ -1,0 +1,25 @@
+---
+- hosts: webserver
+  become: yes
+  tasks:
+    - name: Cloner le projet
+      git:
+        repo: 'https://github.com/TahirouM/Partiel_Tailwind.git'
+        dest: /home/azureuser/Partiel_Tailwind
+        version: main
+        force: yes
+
+    - name: Installer les dépendances
+      command: npm install
+      args:
+        chdir: /home/azureuser/Partiel_Tailwind
+
+    - name: Générer le build
+      command: npm run build
+      args:
+        chdir: /home/azureuser/Partiel_Tailwind
+
+    - name: Lancer Next.js en mode production
+      shell: nohup npm start &
+      args:
+        chdir: /home/azureuser/Partiel_Tailwind
